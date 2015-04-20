@@ -1,33 +1,9 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-if !has('gui_running')
-	  set t_Co=256
-  endif
-
-
-set number
-
+let g:Powerline_symbols = 'fancy'
 colorscheme molokai
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-set encoding=utf-8
-scriptencoding utf-8
-
-
-
-
-
-
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+set number
+set autoread 

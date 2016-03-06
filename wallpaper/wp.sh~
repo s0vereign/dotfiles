@@ -1,0 +1,8 @@
+#!/bin/bash
+HOUR=-1
+while true; do
+
+	HOUR="$(date +%H)"
+	echo "${HOUR}"
+	sleep 1s
+done

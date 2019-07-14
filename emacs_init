@@ -18,9 +18,9 @@
 (package-initialize)
 
 ; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-
+;;(unless package-archive-contents
+;;  (package-refresh-contents))
+(package-refresh-contents)
 ; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -36,7 +36,6 @@
  '(custom-safe-themes
    (quote
     ("196df8815910c1a3422b5f7c1f45a72edfa851f6a1d672b7b727d9551bb7c7ba" "1d2f406a342499f0098f9388b87d05ec9b28ccb12ca548f4f5fa80ae368235b6" default)))
- '(helm-youtube-key (quote AIzaSyBwaB-2IV4p3CLfIkxFiu-NSvu1y3ylarQ))
  '(package-selected-packages
    (quote
     (helm-slime pdf-tools company-cmake company-shell rust-mode slime slime-company python-mode pyenv-mode-auto pyenv-mode helm-themes powerline base16-theme markdown-mode+ ein multi-term helm-youtube helm-spotify spotify monokai-pro-theme company-irony company-jedi helm-gitlab helm-spotify-plus jedi jedi-core company nlinum))))

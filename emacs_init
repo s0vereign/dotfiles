@@ -1,0 +1,95 @@
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+
+
+
+(setq package-list '(helm-slime base16-theme company-cmake company-irony company-jedi company-shell ein helm-gitlab gitlab helm-spotify helm-spotify-plus helm-themes helm-youtube helm helm-core async irony jedi auto-complete jedi-core epc ctable concurrent markdown-mode+ markdown-mode monokai-pro-theme multi multi-term nlinum pdf-tools pkg-info epl polymode popup powerline pyenv-mode-auto pyenv-mode python-environment deferred pythonic f dash request rust-mode cm-mode s skewer-mode js2-mode simple-httpd slime-company company slime macrostep spotify tablist websocket))
+
+
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+; activate all the packages (in particular autoloads)
+(package-initialize)
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (monokai-pro)))
+ '(custom-safe-themes
+   (quote
+    ("196df8815910c1a3422b5f7c1f45a72edfa851f6a1d672b7b727d9551bb7c7ba" "1d2f406a342499f0098f9388b87d05ec9b28ccb12ca548f4f5fa80ae368235b6" default)))
+ '(helm-youtube-key (quote AIzaSyBwaB-2IV4p3CLfIkxFiu-NSvu1y3ylarQ))
+ '(package-selected-packages
+   (quote
+    (helm-slime pdf-tools company-cmake company-shell rust-mode slime slime-company python-mode pyenv-mode-auto pyenv-mode helm-themes powerline base16-theme markdown-mode+ ein multi-term helm-youtube helm-spotify spotify monokai-pro-theme company-irony company-jedi helm-gitlab helm-spotify-plus jedi jedi-core company nlinum))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(global-linum-mode t)
+(ido-mode t)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(global-set-key (kbd "C-x b") #'helm-buffers-list)
+(helm-mode 1)
+
+
+
+(require 'powerline)
+(powerline-default-theme)
+
+
+(require 'helm-config)
+(require 'helm-themes)
+;;(helm-theme "base16-material-darker")
+(load-theme 'base16-material-darker t)
+
+;;;(add-hook 'after-init-hook 'global-company-mode)
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:environment-root "jedi")
+
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+(global-company-mode t)
+
+
+(setq python-python-command "/home/zap0d/miniconda3/envs/py37/bin/python")
+
+(setq ring-bell-function
+      (lambda ()
+        (let ((orig-fg (face-foreground 'mode-line)))
+          (set-face-foreground 'mode-line "#F2804F")
+          (run-with-idle-timer 0.1 nil
+                               (lambda (fg) (set-face-foreground 'mode-line fg))
+                               orig-fg))))
+
+
+(setq inferior-lisp-program "/usr/bin/sbcl")
+
+
+

@@ -5,7 +5,10 @@
 
 
 
-(setq package-list '(helm-slime base16-theme company-cmake company-irony company-jedi company-shell ein helm-gitlab gitlab helm-spotify helm-spotify-plus helm-themes helm-youtube helm helm-core async irony jedi auto-complete jedi-core epc ctable concurrent markdown-mode+ markdown-mode monokai-pro-theme multi multi-term nlinum pdf-tools pkg-info epl polymode popup powerline pyenv-mode-auto pyenv-mode python-environment deferred pythonic f dash request rust-mode cm-mode s skewer-mode js2-mode simple-httpd slime-company company slime macrostep spotify tablist websocket))
+; activate all the packages (in particular autoloads)
+(package-initialize)
+
+(setq package-list '(helm-slime base16-theme company-cmake company-irony company-jedi company-shell ein helm-gitlab gitlab helm-spotify helm-spotify-plus helm-themes helm-youtube helm helm-core async irony jedi auto-complete jedi-core epc ctable concurrent markdown-mode+ markdown-mode monokai-pro-theme multi multi-term nlinum pdf-tools pkg-info epl polymode popup powerline pyenv-mode-auto pyenv-mode python-environment deferred pythonic f dash request rust-mode cm-mode s skewer-mode js2-mode simple-httpd slime-company company slime macrostep spotify tablist websocket haskell-mode flycheck-haskell))
 
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -14,8 +17,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-; activate all the packages (in particular autoloads)
-(package-initialize)
 
 ; fetch the list of packages available 
 ;;(unless package-archive-contents
@@ -35,10 +36,10 @@
  '(custom-enabled-themes (quote (monokai-pro)))
  '(custom-safe-themes
    (quote
-    ("196df8815910c1a3422b5f7c1f45a72edfa851f6a1d672b7b727d9551bb7c7ba" "1d2f406a342499f0098f9388b87d05ec9b28ccb12ca548f4f5fa80ae368235b6" default)))
+    ("5846b39f2171d620c45ee31409350c1ccaddebd3f88ac19894ae15db9ef23035" "196df8815910c1a3422b5f7c1f45a72edfa851f6a1d672b7b727d9551bb7c7ba" "1d2f406a342499f0098f9388b87d05ec9b28ccb12ca548f4f5fa80ae368235b6" default)))
  '(package-selected-packages
    (quote
-    (helm-slime pdf-tools company-cmake company-shell rust-mode slime slime-company python-mode pyenv-mode-auto pyenv-mode helm-themes powerline base16-theme markdown-mode+ ein multi-term helm-youtube helm-spotify spotify monokai-pro-theme company-irony company-jedi helm-gitlab helm-spotify-plus jedi jedi-core company nlinum))))
+    (flycheck-haskell haskell-mode helm-slime pdf-tools company-cmake company-shell rust-mode slime slime-company python-mode pyenv-mode-auto pyenv-mode helm-themes powerline base16-theme markdown-mode+ ein multi-term helm-youtube helm-spotify spotify monokai-pro-theme company-irony company-jedi helm-gitlab helm-spotify-plus jedi jedi-core company nlinum))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -90,5 +91,5 @@
 
 (setq inferior-lisp-program "/usr/bin/sbcl")
 
-
+(add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 

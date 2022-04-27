@@ -1,139 +1,345 @@
+;; absolute path of ~/.emacs.d
+(setq emacs-home (expand-file-name (concat (getenv "HOME") "/.emacs.d/")))
+
+;; disable welcome screen
+(setq inhibit-startup-screen t)
+
+;; =============================================================================
+;; =========================== melpa package manager ===========================
+;; =============================================================================
+
+;; melpa package repository for extra packages
 (require 'package)
+;; run 'M-x package-refresh-contents RET' to get the melpa packages
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+;; =============================================================================
+;; ============================== auto generated ===============================
+;; =============================================================================
 
-(setq package-enable-at-startup nil)
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(compilation-message-face (quote default))
- '(cua-global-mark-cursor-color "#2aa198")
- '(cua-normal-cursor-color "#839496")
- '(cua-overwrite-cursor-color "#b58900")
- '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (aurora)))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-enabled-themes (quote (base16-humanoid-dark)))
  '(custom-safe-themes
    (quote
-	("790e74b900c074ac8f64fa0b610ad05bcfece9be44e8f5340d2d94c1e47538de" "51277c9add74612c7624a276e1ee3c7d89b2f38b1609eed6759965f9d4254369" "e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
- '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
- '(highlight-symbol-colors
-   (--map
-	(solarized-color-blend it "#002b36" 0.25)
-	(quote
-	 ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
- '(highlight-symbol-foreground-color "#93a1a1")
- '(highlight-tail-colors
+    ("8150b36e4a45c579241de050c13178a8ee93693c6b9038145416746f2c030053" "6daa09c8c2c68de3ff1b83694115231faa7e650fdbb668bc76275f0f2ce2a437" "b02eae4d22362a941751f690032ea30c7c78d8ca8a1212fdae9eecad28a3587f" "80930c775cef2a97f2305bae6737a1c736079fdcc62a6fdf7b55de669fbbcd13" "446cc97923e30dec43f10573ac085e384975d8a0c55159464ea6ef001f4a16ba" "819d24b9aba8fcb446aecfb59f87d1817a6d3eb07de7fdec67743ef32194438b" "aea30125ef2e48831f46695418677b9d676c3babf43959c8e978c0ad672a7329" "a62f0662e6aa7b05d0b4493a8e245ab31492765561b08192df61c9d1c7e1ddee" "b6269b0356ed8d9ed55b0dcea10b4e13227b89fd2af4452eee19ac88297b0f99" "c968804189e0fc963c641f5c9ad64bca431d41af2fb7e1d01a2a6666376f819c" default)))
+ '(package-selected-packages
    (quote
-	(("#073642" . 0)
-	 ("#546E00" . 20)
-	 ("#00736F" . 30)
-	 ("#00629D" . 50)
-	 ("#7B6000" . 60)
-	 ("#8B2C02" . 70)
-	 ("#93115C" . 85)
-	 ("#073642" . 100))))
- '(hl-bg-colors
-   (quote
-	("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
- '(hl-fg-colors
-   (quote
-	("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
- '(ido-enable-flex-matching t)
- '(initial-buffer-choice "~/git")
- '(magit-diff-use-overlays nil)
- '(menu-bar-mode nil)
- '(neo-theme (quote ascii))
- '(nrepl-message-colors
-   (quote
-	("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
- '(pos-tip-background-color "#073642")
- '(pos-tip-foreground-color "#93a1a1")
- '(scroll-bar-mode nil)
- '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
- '(term-default-bg-color "#002b36")
- '(term-default-fg-color "#839496")
- '(weechat-color-list
-   (quote
-	(unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83")))
- '(xterm-color-names
-   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
- '(xterm-color-names-bright
-   ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
+    (vterm julia-mode org-roam-bibtex org-roam org-roam-server yasnippet company-rtags company-quickhelp use-package grip-mode cmake-ide undo-fu highlight-indent-guides conda blacken company-web web-mode impatient-mode clang-format multi-term company-irony-c-headers helm-rtags flycheck-rtags rtags ein diff-hl neotree flycheck-irony flycheck-mypy pylint flycheck magit helm-projectile ggtags company-irony irony projectile yaml-mode s dash dictcc helm-gtags helm-themes helm cmake-mode company company-jedi jedi epc markdown-mode flyspell-popup xclip))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(ediff-current-diff-A ((t (:foreground "White" :background "brown"))))
+ '(ediff-even-diff-A ((t (:background "blue"))))
+ '(ediff-even-diff-Ancestor ((t (:background "blue"))))
+ '(ediff-even-diff-B ((t (:background "blue"))))
+ '(ediff-even-diff-C ((t (:background "blue"))))
+ '(ediff-odd-diff-A ((t (:background "blue"))))
+ '(ediff-odd-diff-Ancestor ((t (:background "blue"))))
+ '(ediff-odd-diff-B ((t (:background "blue"))))
+ '(ediff-odd-diff-C ((t (:background "blue"))))
+ '(term-color-blue ((t (:background "deep sky blue" :foreground "deep sky blue")))))
 
-(setq c-basic-offset 6)
-(setq-default c-electric-flag nil)
-(defun my-make-CR-do-indent ()
-  (define-key c-mode-base-map "\C-m" 'c-context-line-break))
-(add-hook 'c-initialization-hook 'my-make-CR-do-indent)
-(setq-default c-electric-flag nil)
-(require 'cl)
-(require 'cc-mode)
-(setq-default c-basic-offset 4 c-default-style "linux")
-(setq-default tab-width 4 indent-tabs-mode t)
-(define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
+;; =============================================================================
+;; =================== install packages via package manager ====================
+;; =============================================================================
 
-;;(require 'ac-clang)
-;;(ac-clang-initialize)
-;;(ac-clang-activate)
+;; all packages, which have to installed via emacs package manager
+(setq my-package-list '(blacken clang-format cmake-ide cmake-mode company company-irony company-irony-c-headers company-jedi
+				     company-rtags company-quickhelp company-web conda dictcc diff-hl dash ein epc ggtags grip-mode
+				     flycheck flycheck-irony flycheck-mypy flycheck-rtags
+				     flyspell-popup helm helm-gtags helm-rtags helm-projectile
+				     helm-themes highlight-indent-guides
+				     impatient-mode irony yasnippet jedi magit markdown-mode
+				     multi-term neotree projectile
+				     rtags s undo-fu use-package web-mode yaml-mode xclip))
+
+;; The file run_melpa contains the variable run-melpa. If the variable is true,
+;; new packages must be installed.
+;; The var is set by the setup.py script.
+(load (concat emacs-home "run_melpa.el"))
+(when run-melpa
+  (progn
+      (unless package-archive-contents
+	(package-refresh-contents))
+      (dolist (my-package my-package-list)
+	(unless (package-installed-p my-package)
+	  (progn
+	    (package-install my-package)
+	    (message "install package: %s" my-package)
+	    )))
+      ;; Set the variable to nil, otherwise all packages will be checked at
+      ;; every start, which unnecessarily increases the start time.
+      (write-region "(setq run-melpa nil)\n" nil (concat emacs-home "run_melpa.el")
+		    )))
+
+
+;; =============================================================================
+;; ================ load emacs lisp functions from extra files  ================
+;; =============================================================================
+
+;; the directory contains packages which are not available at the package manager
+(setq load-path (cons (concat emacs-home "lisp") load-path))
+;; self-defined general functions
+(load-file (concat emacs-home "lisp/help_function/autoload.el"))
+;; configuration for different modes
+(dolist (config (directory-files (concat emacs-home "modes") t ".el"))
+  (load-file config))
+;; loads host-dependent configurations, which are generated by the setup.py script
+(load-file (concat emacs-home "setup_generated.el"))
+;; loads host-dependent configurations, e.g. paths to executables
+(if (file-exists-p (concat emacs-home "local-vars.el"))
+    (load-file (concat emacs-home "local-vars.el")))
+
+;; =============================================================================
+;; =============================== enable modes ================================
+;; =============================================================================
+
+(require 'use-package)
+
+;; the ido mode improve the path navigation in the mini buffer
+(require 'ido)
+(ido-mode t)
+;; add llvm ir highlighting
+;; from offical repo: https://github.com/llvm-mirror/llvm/tree/e74acf4ba7bb2df0b2a04548061b4c886efc368a/utils/emacs
+(require 'llvm-mode)
+;; symon is a hardware monitor, which display cpu, memory usage and more in the mini-buffer
+;; https://github.com/zk-phi/symon
+(require 'symon)
+
+;; helm is a framework, which improve the UI of emacs
+;; https://github.com/emacs-helm/helm
+(require 'helm)
+(helm-mode t)
+
+;; company is a backend for auto completion in different modes (https://company-mode.github.io/)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; register different company backends
+(let ((company-backends-to-enable
+       '(company-cmake
+	 ;; add new backend
+	 )))
+  (dolist (backend company-backends-to-enable)
+    (add-to-list 'company-backends backend))
+  (eval-after-load 'company 'company-backends)
+  )
+;; this package enables a function to display the function documentation during running company completion
+;; run `M-x company-show-doc-buffer` to verify if your company backend supports this
+(company-quickhelp-mode)
+
+;; library to managing projects, e.g a git repo is a project
+(require 'projectile)
+(setq projectile-indexing-method 'hybrid)
+(setq projectile-sort-order 'recentf)
+(setq projectile-project-search-path '("~/git"))
+
+;; enable helm extension for projectile
+(require 'helm-projectile)
+(helm-projectile-on)
+
+;; flycheck allows to highlight warnings and errors in the source code using external tools
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; diff-hl is a plugin which show git diff inside the buffer
+;; highlight works just in GUI mode, navigation also in terminal
+(require 'diff-hl)
+(global-diff-hl-mode)
+;; use flycheck to update highlight without saving file
+(diff-hl-flydiff-mode)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+;; emacs ipython notebook (ein)
+;; the polymode allows to display markdown cells in notebooks
+(setq ein:polymode t)
+
+(add-hook 'rst-mode-hook 'sphinx-build-mode)
+
+(require 'conda)
+
+;; add indentation highlighting in buffers
+(require 'highlight-indent-guides)
+;; configure style
+(set-face-background 'highlight-indent-guides-odd-face "darkgray")
+(set-face-background 'highlight-indent-guides-even-face "dimgray")
+(set-face-foreground 'highlight-indent-guides-character-face "dimgray")
+(setq highlight-indent-guides-method 'character)
+;; setup modes with indentation highlighting
+(add-hook 'yaml-mode-hook 'highlight-indent-guides-mode)
+(add-hook 'python-mode-hook 'highlight-indent-guides-mode)
+
+;; enable yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;;; auto complete mod
-;;; should be loaded after yasnippet so that they can work together
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-;;; set the trigger key so that it can work together with yasnippet on tab key,
-;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
-;;; activate, otherwise, auto-complete will
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
-;;; Cool Menu for AC
-(setq ac-show-menu-immediately-on-auto-complete t)
+;; =============================================================================
+;; =========================== configure main usage ============================
+;; =============================================================================
+
+;; enable c++-mode at cuda cu.files
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+
+;; enable sh-mode at singularity .def recipe
+(add-to-list 'auto-mode-alist '("\\.def\\'" . sh-mode))
+
+;; enable copy/paste between emacs and x11
+;; to install use following command in emcas (RET means key enter): M-x package-install RET xclip RET
+;; the enable_xclip variable is generated by the setup.py script and located in setup_generated.el
+(if (= enable_xclip 1)
+    (progn
+      (xclip-mode 1)
+      (setq select-enable-clipboard t)
+      )
+  ()
+  )
+
+;; show cursor position within line
+(column-number-mode 1)
+
+(if (= flyspell-enable 1)
+    (progn
+     ;; enable on the fly spellcheck
+     ;; spellcheck for the complete text
+     (add-hook 'text-mode-hook 'flyspell-mode)
+     ;;  spellcheck just for comments and strings (depends on the prog language)
+     (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+     ;; when this mode is enabled, the spellchecker pop menu opens if the cursor stays on the wrong word for more than one second
+     (add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
+     ))
+
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; disable scroll bar in GUI mode
+(scroll-bar-mode -1)
+
+;; allows to load every .dir-locals.el
+;; can be a secure problem
+;; by default, safe (system-dependent) variables are stored in the .emacs.
+(setq enable-local-variables :all)
+
+;; =============================================================================
+;; ============================ global key bindings ============================
+;; =============================================================================
+
+;; replace the default emacs functions and do the same things without kill-ring
+;; bind them to emacs's default shortcut keys:
+(global-set-key (kbd "C-j") 'my-delete-line-backward) ; Ctrl+Shift+k
+(global-set-key (kbd "C-k") 'my-delete-line)
+(global-set-key (kbd "<C-delete>") 'my-delete-word)
+(global-set-key (kbd "<M-DEL>") 'my-backward-delete-word)
+
+;; swap shortcut of move to begin and move to indentation
+(global-set-key (kbd "M-m") 'move-beginning-of-line)
+(global-set-key (kbd "C-a") 'back-to-indentation)
+
+;; shortcut to open the spellcheck pop-menu
+(global-set-key (kbd "M-$") 'flyspell-popup-correct)
+
+;; open company completion popup
+(global-set-key (kbd "M-#") 'company-complete)
+
+;; windmove is a built-in function that allows you to change the window selectively
+;; it improves the functionality of 'C-x o'.
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+;; if the C-c bindings are overwritten by another mode
+(global-set-key (kbd "C-x C-<left>")  'windmove-left)
+(global-set-key (kbd "C-x C-<right>") 'windmove-right)
+(global-set-key (kbd "C-x C-<up>")    'windmove-up)
+(global-set-key (kbd "C-x C-<down>")  'windmove-down)
+
+;; the original shortcut is M-|
+;; but some German keyboards are too cheep to execute this combination
+(global-set-key (kbd "M-_")  'shell-command-on-region)
+
+;; original shortcut is C-x z
+(global-set-key (kbd "M-<f3>")  'repeat)
+
+;; another shortcut for switching framework
+(global-set-key (kbd "C-x <down>") 'other-frame)
+
+;; another shortcut for comment-line
+(global-set-key (kbd "C-x ;") 'comment-line)
+
+;; add shortcut to the dired-mode
+(add-hook
+ 'dired-mode-hook
+ (lambda()
+   (define-key dired-mode-map "J" 'ido-dired)))
+
+;; replace default emacs functions with helm functions
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(global-set-key (kbd "C-x b") #'helm-buffers-list)
+
+;; run dictcc translation
+(global-set-key (kbd "M-ü") 'dictcc)
+
+;; allow smart completion with <TAB>
+(define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
+
+;; set prefix key binding for every projectile command
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode +1)
+
+;; run magit status command
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(global-set-key (kbd "<f8>") 'neotree-toggle)
+
+(global-unset-key (kbd "C-_"))
+(global-set-key (kbd "C-_")   'undo-fu-only-undo)
+(global-set-key (kbd "C-:") 'undo-fu-only-redo)
 
 
-(require 'auto-complete-clang)
-(define-key c++-mode-map (kbd "C-S-<return>") 'ac-complete-clang)
-;; replace C-S-<return> with a key binding that you want
+;; =============================================================================
+;; =================================== other ===================================
+;; =============================================================================
 
-;; Set some configurations for Ido-mode taken form "Mastering Emacs"
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
+;; save all backup files to a central directory
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+  backup-by-copying t    ; Don't delink hardlinks
+  version-control t      ; Use version numbers on backups
+  delete-old-versions t  ; Automatically delete excess backups
+  kept-new-versions 20   ; how many of the newest versions to keep
+  kept-old-versions 5    ; and how many of the old
+  )
 
-;; Using the CMD key as Meta Key on my macbook 
-(setq mac-option-modifier nil)
-(setq mac-command-modifier 'meta)
+;; remove trailing whitespaces in source code files
+(defun nuke_traling ()
+  (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))
+(add-hook 'prog-mode-hook #'nuke_traling)
+(add-hook 'markdown-mode-hook #'nuke_traling)
+(add-hook 'rst-mode-hook #'nuke_traling)
 
-;; Linum mode for showing lines
-(put 'upcase-region 'disabled nil)
-(global-linum-mode t)
+;; =============================================================================
+;; ================================== Macros ===================================
+;; =============================================================================
 
-;;; Use Airline theme
-(require 'airline-themes)
-(load-theme 'airline-light)
+;; load macros from file and maybe bind to key
+;; (load-file "~/.emacs.d/macros/gen.macs")
+;; (global-company-mode "\C-x\C-kT" 'myMacro)
+(setq visible-bell 1)
 
-
-
-;;; Use the Projectile Addon  in Emacs
-(require 'projectile)
-(projectile-global-mode)
-;;; Open Neotree on startup
-(require 'neotree)
-(neotree)
-
-(add-hook 'term-mode-hook
-		  (lambda ()
-			(setq term-buffer-maximum-size 10000)))
-(put 'downcase-region 'disabled nil)
+(linum-mode t)
